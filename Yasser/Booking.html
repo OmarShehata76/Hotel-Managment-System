@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Dashboard - Grand Hotel</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo">Grand Hotel</div>
+        <nav>
+            <a href="#">Home</a>
+            <a href="room-details.html">Rooms</a>
+            <a href="dashboard.html" style="color: #f1c40f;">My Dashboard</a>
+            <a href="#">Logout</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div class="dashboard-layout">
+            
+            <aside class="sidebar">
+                <div class="user-avatar">👤</div>
+                <h2>John Doe</h2>
+                <p style="color: #777;">john.doe@email.com</p>
+                <p style="color: #777; margin-bottom: 20px;">+971 50 123 4567</p>
+                
+                <hr style="margin: 15px 0; border: 0; border-top: 1px solid #eee;">
+                
+                <div style="text-align: left; padding: 0 10px;">
+                    <p><strong>Member Since:</strong> Jan 2024</p>
+                    <p><strong>Membership:</strong> Gold</p>
+                </div>
+                
+                <button class="btn btn-primary" style="margin-top: 20px; width: 100%;">Edit Profile</button>
+            </aside>
+
+            <section class="main-content">
+                <h2 class="section-title">Dashboard Overview</h2>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3>5</h3>
+                        <p>Total Bookings</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>1</h3>
+                        <p>Active Bookings</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>$1,250</h3>
+                        <p>Total Spent</p>
+                    </div>
+                </div>
+
+                <h2 class="section-title">Booking History</h2>
+                <div style="overflow-x: auto;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Booking ID</th>
+                                <th>Room Type</th>
+                                <th>Check-In</th>
+                                <th>Check-Out</th>
+                                <th>Status</th>
+                                <th>Total</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>#BK-202501</td>
+                                <td>Deluxe Ocean View</td>
+                                <td>Dec 10, 2025</td>
+                                <td>Dec 12, 2025</td>
+                                <td><span class="status confirmed">Confirmed</span></td>
+                                <td>$500</td>
+                                <td><button class="btn btn-primary" style="font-size: 0.8rem; padding: 5px 10px;">View Receipt</button></td>
+                            </tr>
+                            
+                            <tr>
+                                <td>#BK-202488</td>
+                                <td>Standard Single Room</td>
+                                <td>Nov 01, 2025</td>
+                                <td>Nov 03, 2025</td>
+                                <td><span class="status pending">Pending</span></td>
+                                <td>$300</td>
+                                <td>
+                                    <button class="btn btn-primary" style="font-size: 0.8rem; padding: 5px 10px; background-color: #3498db; margin-right: 5px;">Modify</button>
+                                    <button class="btn btn-danger">Cancel Booking</button>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>#BK-202450</td>
+                                <td>Family Suite</td>
+                                <td>Aug 15, 2025</td>
+                                <td>Aug 20, 2025</td>
+                                <td><span class="status cancelled">Cancelled</span></td>
+                                <td>$0</td>
+                                <td>-</td>
+                            </tr>
+                            
+                             <tr>
+                                <td>#BK-202410</td>
+                                <td>Double Room</td>
+                                <td>Jun 10, 2025</td>
+                                <td>Jun 12, 2025</td>
+                                <td><span class="status confirmed">Completed</span></td>
+                                <td>$450</td>
+                                <td><button class="btn btn-primary" style="font-size: 0.8rem; padding: 5px 10px;">View Receipt</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </main>
+
+</body>
+</html>

@@ -1,0 +1,345 @@
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    
+    --fs-base: clamp(14px, 1.2vw + 12px, 18px);
+    --space-xs: 0.5rem;
+    --space-sm: 1rem;
+    --space-md: 1.5rem;
+    --space-lg: 2.5rem;
+}
+
+html { font-size: var(--fs-base); }
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #1a2a6c, #2c3e50, #1a2a6c);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.container {
+    width: 100%;
+    max-width: 480px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-box {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 24px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 30px;
+}
+
+.login-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+}
+
+.hotel-logo {
+    text-align: center;
+    padding: 35px 20px;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    color: white;
+    border-bottom: 4px solid #ffd700;
+}
+
+.hotel-logo i {
+    font-size: clamp(2.4rem, 6vw, 3.5rem);
+    margin-bottom: 0.9rem;
+    color: #ffd700;
+    text-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.3);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.hotel-logo h1 {
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 700;
+    letter-spacing: 0.09rem;
+    text-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.2);
+    background: linear-gradient(to right, #ffd700, #fff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.form-container {
+    padding: clamp(1.5rem, 3.5vw, 3.2rem) clamp(1.25rem, 3vw, 2.5rem);
+}
+
+.form-container h2 {
+    color: #2c3e50;
+    font-size: clamp(1.4rem, 2.2vw, 2.2rem);
+    margin-bottom: 0.75rem;
+    text-align: center;
+    font-weight: 700;
+}
+
+.form-container p {
+    color: #7f8c8d;
+    text-align: center;
+    margin-bottom: clamp(1rem, 3vw, 2.5rem);
+    line-height: 1.6;
+    font-size: clamp(0.95rem, 1.2vw, 1.05rem);
+}
+
+.input-group {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.input-group i {
+    position: absolute;
+    left: 1.25rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #7f8c8d;
+    font-size: clamp(1rem, 1.2vw, 1.2rem);
+    z-index: 10;
+    transition: color 0.3s ease;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 1.05rem 1.6rem 1.05rem 3.5rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 1rem;
+    font-size: clamp(0.98rem, 1.2vw, 1.1rem);
+    font-weight: 500;
+    transition: all 0.4s ease;
+    background: white;
+    color: #2c3e50;
+    box-shadow: 0 0.25rem 0.375rem rgba(0, 0, 0, 0.05);
+}
+
+.input-group input:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 0 4px rgba(52, 152, 219, 0.2);
+    outline: none;
+}
+
+.input-group input:hover {
+    border-color: #3498db;
+}
+
+.input-group input::placeholder {
+    color: #95a5a6;
+    font-weight: 400;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 1.25rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #7f8c8d;
+    cursor: pointer;
+    z-index: 15;
+    font-size: clamp(1rem, 1.2vw, 1.1rem);
+    transition: color 0.3s ease;
+}
+
+.toggle-password:hover {
+    color: #3498db;
+}
+
+.remember-forgot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 35px;
+    flex-wrap: wrap;
+}
+
+.remember-forgot label {
+    display: flex;
+    align-items: center;
+    color: #2c3e50;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.remember-forgot input {
+    margin-right: 8px;
+    cursor: pointer;
+}
+
+.forgot-password {
+    color: #3498db;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+    font-size: 0.95rem;
+}
+
+.forgot-password:hover {
+    color: #2980b9;
+    text-decoration: underline;
+}
+
+.login-btn {
+    width: 100%;
+    padding: clamp(0.85rem, 1.8vw, 1.2rem);
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    color: white;
+    border: none;
+    border-radius: 1rem;
+    font-size: clamp(1.05rem, 1.5vw, 1.2rem);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    box-shadow: 0 0.375rem 0.9375rem rgba(30, 60, 114, 0.4);
+    letter-spacing: 0.06rem;
+}
+
+.login-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(30, 60, 114, 0.6);
+    background: linear-gradient(135deg, #1a3464, #25488a);
+}
+
+.login-btn:active {
+    transform: translateY(0);
+}
+
+.register-section {
+    text-align: center;
+    padding: 25px;
+    background: #f8f9fa;
+    border-top: 2px solid #ecf0f1;
+}
+
+.register-section p {
+    color: #7f8c8d;
+    font-size: 1rem;
+}
+
+.register-section a {
+    color: #e74c3c;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+    font-size: 1.05rem;
+}
+
+.register-section a:hover {
+    color: #c0392b;
+    text-decoration: underline;
+}
+
+.footer {
+    text-align: center;
+    margin-top: 10px;
+    color: white;
+    font-size: 0.95rem;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .form-container {
+        padding: 40px 30px;
+    }
+    
+    .hotel-logo h1 {
+        font-size: 1.8rem;
+    }
+    
+    .form-container h2 {
+        font-size: 1.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .login-box {
+        margin: 15px;
+        border-radius: 20px;
+    }
+    
+    .form-container {
+        padding: 35px 25px;
+    }
+    
+    .hotel-logo {
+        padding: 25px 15px;
+    }
+    
+    .hotel-logo i {
+        font-size: 2.8rem;
+    }
+    
+    .hotel-logo h1 {
+        font-size: 1.6rem;
+    }
+    
+    .form-container h2 {
+        font-size: 1.7rem;
+    }
+    
+    .input-group input {
+        padding: 16px 20px 16px 50px;
+        font-size: 1rem;
+    }
+    
+    .login-btn {
+        padding: 16px;
+        font-size: 1.1rem;
+    }
+}
+
+/* Input focus animations */
+.input-group input:focus + .toggle-password {
+    color: #3498db;
+}
+
+.input-group input:focus + i {
+    color: #3498db;
+}
+
+
+.form-container {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
