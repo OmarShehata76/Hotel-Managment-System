@@ -59,7 +59,9 @@ body {
 .logo-text {
   font-size: 26px;
   font-weight: bold;
+  width: max-content;
   padding: 5px 12px;
+  margin-right: 20px;
   background: #d4a017;
   border-radius: 6px;
   color: #fff;
@@ -69,7 +71,7 @@ body {
 .main-nav {
   display: flex;
   align-items: center;
-  gap: 25px; /* تظبط المسافة بالتساوي */
+  gap: 30px; /* تظبط المسافة بالتساوي */
 }
 
 .main-nav a {
