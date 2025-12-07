@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Us | GrandStay Hotel</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: url('imgs/pngtree-five-star-hotel-with-side-door-and-wooden-door-image_990211.jpg') center/cover no-repeat;
+            min-height: 100vh;
+            color: #fff;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ===== HEADER ===== */
+
+
+        .site-header {
+            background: rgba(30, 30, 30, 0.92);
+            padding: 15px 0;
+            color: #fff;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            width: 100%;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+        }
+
+        /* container of header */
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        /* Logo */
+        .logo-box {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .logo-text {
+            font-size: 26px;
+            font-weight: bold;
+            padding: 5px 12px;
+            background: #d4a017;
+            border-radius: 6px;
+            color: #fff;
+        }
+
+        /* Navigation */
+        .main-nav {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .main-nav a {
+            text-decoration: none;
+            padding: 10px 18px;
+            background: rgba(255, 255, 255, 0.12);
+            color: #fff;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: 0.3s;
+            white-space: nowrap;
+            margin-right: 15px;
+        }
+
+        .main-nav a:hover {
+            background: #d4a017;
+            transform: translateY(-3px);
+        }
+
+        /* ===== PAGE TITLE ===== */
+        .page-title {
+            text-align: center;
+            padding: 80px 20px 40px;
+            color: #fff;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .page-title h1 {
+            font-size: 70px;
+            margin-bottom: 10px;
+        }
+
+        .page-title p {
+            font-size: 24px;
+            opacity: 0.9;
+        }
+
+        /* ===== MAIN ===== */
+        main {
+            max-width: 1100px;
+            margin: 40px auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            padding: 0 20px;
+        }
+
+        .contact-form,
+        .contact-info {
+            flex: 1 1 400px;
+            background: rgba(255, 255, 255, 0.15);
+            /* شفاف */
+            backdrop-filter: blur(10px);
+            /* تأثير ضبابي */
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+            color: #fff;
+        }
+
+        .contact-form h2,
+        .contact-info h2 {
+            margin-bottom: 40px;
+            color: #f9c74f;
+            text-align: center;
+            font-size: 30px;
+            font-weight: 900;
+        }
+
+
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            font-size: 16px;
+            color: #000000;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(8px);
+        }
+
+
+        .contact-form textarea {
+            resize: vertical;
+        }
+
+        .contact-form button {
+            width: 100%;
+            padding: 15px;
+            background-color: #f9c74f;
+            border: none;
+            color: #000;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .contact-form button:hover {
+            background-color: #fff176;
+        }
+
+        .contact-info p {
+            margin-bottom: 12px;
+            font-size: 16px;
+            margin: 8, 0;
+        }
+
+        .contact-info strong {
+            color: #f9c74f;
+        }
+
+        .contact-info {
+            text-align: center;
+        }
+
+
+
+
+        /*----------------------*/
+        /* ===== SOCIAL ICONS SECTION ===== */
+        .main-content {
+            max-width: 1100px;
+            margin: 60px auto;
+            padding: 40px 20px;
+            background: transparent;
+            /* بدون أي خلفية */
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
+            border-radius: 18px;
+        }
+
+        .icons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .icon a {
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 3.2em;
+            color: #444;
+            /* لون موحد للأيقونات */
+            background: transparent;
+            /* بدون خلفية */
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .face:hover {
+            color: #1877f2;
+        }
+
+        /* Facebook */
+        .what:hover {
+            color: #25d366;
+        }
+
+        /* WhatsApp */
+        .ins:hover {
+            color: #e1306c;
+        }
+
+        /* Instagram */
+        .git:hover {
+            color: #181717;
+        }
+
+        /* GitHub */
+        .link:hover {
+            color: #0a66c2;
+        }
+
+        /* LinkedIn */
+        .you:hover {
+            color: #ff0000;
+        }
+
+        /* YouTube */
+
+        .icon a:hover {
+            transform: translateY(-6px) scale(1.1);
+        }
+
+        /*----------------------*/
+
+        /* ===== FOOTER ===== */
+        .site-footer {
+            background: #1e1e1e;
+            color: #fff;
+            text-align: center;
+            padding: 25px 0;
+        }
+
+        .socials img {
+            width: 30px;
+            margin: 0 10px;
+            transition: 0.3s;
+        }
+
+        .socials img:hover {
+            transform: scale(1.2);
+        }
+
+        @media (max-width: 768px) {
+            main {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="site-header">
+        <div class="container header-inner">
+
+            <div class="logo-box">
+                <img src="imgs/hotel.png" alt="logo" class="logo-img">
+                <span class="logo-text">Golden Hotel</span>
+            </div>
+
+            <nav class="main-nav">
+                <a href="home.html">Home</a>
+                <a href="Rooms.html">Rooms</a>
+                <a href="Booking.html">Booking</a>
+                <a href="#services">Services</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+                <a href="login.html">Login</a>
+                <a href="signup.html">Sign Up</a>
+                <a href="profile.html">profile</a>
+            </nav>
+
+        </div>
+    </header>
+
+    <section class="page-title">
+        <h1>Contact Us</h1>
+        <p>We’d love to hear from you</p>
+    </section>
+
+    <main>
+        <div class="contact-form">
+            <h2>Send Us a Message</h2>
+            <form>
+                <input type="text" placeholder="Full Name" required>
+                <input type="email" placeholder="Email Address" required>
+                <input type="text" placeholder="Subject">
+                <textarea rows="5" placeholder="Write your message..." required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+
+        <div class="contact-info">
+            <h2>Contact Information</h2>
+            <p><strong>Hotel:</strong> GrandStay Hotel</p>
+            <p><strong>Address:</strong> 123 Nile Street, Cairo, Egypt</p>
+            <p><strong>Phone:</strong> +20 100 123 4567</p>
+            <p><strong>Email:</strong> info@grandstay.com</p>
+            <p><strong>Working Hours:</strong> 24/7 Customer Support</p>
+        </div>
+
+
+        <div class="main-content">
+            <div class="icons">
+                <div class="icon">
+                    <a href="#" class="face"><i class="fa-brands fa-facebook"></i></a>
+                </div>
+                <div class="icon">
+                    <a href="index2.html" class="what"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+                <div class="icon">
+                    <a href="#" class="ins"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+                <div class="icon">
+                    <a href="#" class="git"><i class="fa-brands fa-github"></i></a>
+                </div>
+                <div class="icon">
+                    <a href="#" class="link"><i class="fa-brands fa-linkedin"></i></a>
+                </div>
+                <div class="icon">
+                    <a href="#" class="you"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+
+
+    </main>
+
+
+
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <p>© 2025 Golden Stay Hotel | All Rights Reserved</p>
+            <br>
+            <div class="socials">
+                <a href="#"><img src="imgs/facebook.png" alt="Facebook" /></a>
+                <a href="#"><img src="imgs/insta.jpg" alt="Instagram" /></a>
+                <a href="#"><img src="imgs/twitr.jpg" alt="Twitter" /></a>
+            </div>
+        </div>
+    </footer>
+
+
+
+</body>
+
+</html>
