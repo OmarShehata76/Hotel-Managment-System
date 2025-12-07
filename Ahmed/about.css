@@ -27,7 +27,7 @@ body {
 }
 
 #about {
-    background-image: url("Ahmed/golden-age-hotel.jpg");
+    background: url("imgs/golden-age-hotel.jpg");
     background-size: cover;
     /* الصورة تمتد لتملأ القسم */
     background-position: center;
