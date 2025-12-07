@@ -1,30 +1,27 @@
-{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
 :root {
-    
-    --fs-base: clamp(14px, 1.2vw + 12px, 18px);
-    --space-xs: 0.5rem;
-    --space-sm: 1rem;
-    --space-md: 1.5rem;
-    --space-lg: 2.5rem;
+    --primary: #1e3c72;
+    --secondary: #2a5298;
+    --accent: #ffd700;
+    --light: #f8f9fa;
+    --dark: #2c3e50;
+    --gray: #7f8c8d;
+    --fs-base: clamp(12px, 1.3vw + 12px, 10px);
 }
-
-html { font-size: var(--fs-base); }
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #1a2a6c, #2c3e50, #1a2a6c);
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
     background-size: 400% 400%;
-    animation: gradientBG 15s ease infinite;
+    animation: gradientBG 20s ease infinite;
     min-height: 100vh;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
+    flex-direction: column;
 }
 
 @keyframes gradientBG {
@@ -33,313 +30,303 @@ body {
     100% { background-position: 0% 50%; }
 }
 
-.container {
-    width: 100%;
-    max-width: 480px;
-    min-height: 100vh;
+/* ===== NAVBAR ===== */
+.site-header {
+  background: rgba(30, 30, 30, 0.92);
+  padding: 15px 0;
+  color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+}
+
+/* container of header */
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Logo */
+.logo-box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-left: -160px;
+}
+
+.logo-img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.logo-text {
+  font-size: 26px;
+  font-weight: bold;
+  width: max-content;
+  padding: 5px 12px;
+  margin-right: 20px;
+  background: #d4a017;
+  border-radius: 6px;
+  color: #fff;
+}
+
+/* Navigation */
+.main-nav {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  margin-left: 107px;
+}
+
+.main-nav a {
+  text-decoration: none;
+  padding: 10px 18px;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: 0.3s;
+  white-space: nowrap;
+  margin-right: 15px;
+}
+
+.main-nav a:hover {
+  background: #d4a017;
+  transform: translateY(-3px);
+}
+
+/* ===== MAIN CONTENT ===== */
+.main-content {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.login-container {
+    display: flex;
+    width: 95%;
+    max-width: 900px;
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+}
+
+/* Left Image Section */
+.login-image {
+    flex: 1;
+    background: url('https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80') center/cover no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 2rem;
+    color: white;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.5);
+    min-height: 500px;
+}
+
+.login-image h2 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+}
+
+.login-image p {
+    font-size: 1rem;
+    opacity: 0.9;
+}
+
+/* Right Form Section */
+.login-form-section {
+    flex: 1;
+    padding: 3rem 2.5rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
 }
 
-.login-box {
-    width: 100%;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    border-radius: 24px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    margin-bottom: 30px;
-}
-
-.login-box:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
-}
-
-.hotel-logo {
+.form-header {
     text-align: center;
-    padding: 35px 20px;
-    background: linear-gradient(135deg, #1e3c72, #2a5298);
-    color: white;
-    border-bottom: 4px solid #ffd700;
+    margin-bottom: 2.5rem;
 }
 
-.hotel-logo i {
-    font-size: clamp(2.4rem, 6vw, 3.5rem);
-    margin-bottom: 0.9rem;
-    color: #ffd700;
-    text-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.3);
-    animation: pulse 2s infinite;
+.form-header h1 {
+    color: var(--dark);
+    font-size: 2.2rem;
+    margin-bottom: 0.5rem;
 }
 
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-    100% { transform: scale(1); }
+.form-header p {
+    color: var(--gray);
+    font-size: 1rem;
 }
 
-.hotel-logo h1 {
-    font-size: clamp(1.6rem, 3vw, 2.2rem);
-    font-weight: 700;
-    letter-spacing: 0.09rem;
-    text-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.2);
-    background: linear-gradient(to right, #ffd700, #fff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.form-container {
-    padding: clamp(1.5rem, 3.5vw, 3.2rem) clamp(1.25rem, 3vw, 2.5rem);
-}
-
-.form-container h2 {
-    color: #2c3e50;
-    font-size: clamp(1.4rem, 2.2vw, 2.2rem);
-    margin-bottom: 0.75rem;
-    text-align: center;
-    font-weight: 700;
-}
-
-.form-container p {
-    color: #7f8c8d;
-    text-align: center;
-    margin-bottom: clamp(1rem, 3vw, 2.5rem);
-    line-height: 1.6;
-    font-size: clamp(0.95rem, 1.2vw, 1.05rem);
-}
-
-.input-group {
+.form-group {
     position: relative;
-    margin-bottom: 30px;
+    margin-bottom: 1.8rem;
 }
 
-.input-group i {
+.form-group i:not(.toggle-password) {
     position: absolute;
-    left: 1.25rem;
+    left: 15px;
     top: 50%;
     transform: translateY(-50%);
-    color: #7f8c8d;
-    font-size: clamp(1rem, 1.2vw, 1.2rem);
-    z-index: 10;
-    transition: color 0.3s ease;
+    color: var(--gray);
 }
 
-.input-group input {
+.form-group input {
     width: 100%;
-    padding: 1.05rem 1.6rem 1.05rem 3.5rem;
-    border: 2px solid #e0e0e0;
-    border-radius: 1rem;
-    font-size: clamp(0.98rem, 1.2vw, 1.1rem);
-    font-weight: 500;
-    transition: all 0.4s ease;
-    background: white;
-    color: #2c3e50;
-    box-shadow: 0 0.25rem 0.375rem rgba(0, 0, 0, 0.05);
+    padding: 14px 15px 14px 45px;
+    border: 2px solid #e1e5e9;
+    border-radius: 12px;
+    font-size: 1rem;
+    transition: all 0.3s;
 }
 
-.input-group input:focus {
-    border-color: #3498db;
-    box-shadow: 0 0 0 4px rgba(52, 152, 219, 0.2);
+.form-group input:focus {
     outline: none;
-}
-
-.input-group input:hover {
-    border-color: #3498db;
-}
-
-.input-group input::placeholder {
-    color: #95a5a6;
-    font-weight: 400;
+    border-color: var(--secondary);
+    box-shadow: 0 0 0 3px rgba(42, 82, 152, 0.2);
 }
 
 .toggle-password {
     position: absolute;
-    right: 1.25rem;
+    right: 15px;
     top: 50%;
     transform: translateY(-50%);
-    color: #7f8c8d;
+    color: var(--gray);
     cursor: pointer;
-    z-index: 15;
-    font-size: clamp(1rem, 1.2vw, 1.1rem);
-    transition: color 0.3s ease;
+    z-index: 10;
 }
 
-.toggle-password:hover {
-    color: #3498db;
-}
-
-.remember-forgot {
+.options {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 35px;
-    flex-wrap: wrap;
-}
-
-.remember-forgot label {
-    display: flex;
-    align-items: center;
-    color: #2c3e50;
-    font-size: 1rem;
-    cursor: pointer;
-}
-
-.remember-forgot input {
-    margin-right: 8px;
-    cursor: pointer;
-}
-
-.forgot-password {
-    color: #3498db;
-    text-decoration: none;
-    font-weight: 600;
-    transition: color 0.3s ease;
+    margin-bottom: 2rem;
     font-size: 0.95rem;
 }
 
-.forgot-password:hover {
-    color: #2980b9;
+.options label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--dark);
+    cursor: pointer;
+}
+
+.options a {
+    color: var(--secondary);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.options a:hover {
     text-decoration: underline;
 }
 
 .login-btn {
     width: 100%;
-    padding: clamp(0.85rem, 1.8vw, 1.2rem);
-    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    padding: 16px;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
     color: white;
     border: none;
-    border-radius: 1rem;
-    font-size: clamp(1.05rem, 1.5vw, 1.2rem);
+    border-radius: 12px;
+    font-size: 1.1rem;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.4s ease;
+    transition: all 0.3s;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0.75rem;
-    box-shadow: 0 0.375rem 0.9375rem rgba(30, 60, 114, 0.4);
-    letter-spacing: 0.06rem;
+    gap: 8px;
 }
 
 .login-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(30, 60, 114, 0.6);
-    background: linear-gradient(135deg, #1a3464, #25488a);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(30, 60, 114, 0.4);
 }
 
 .login-btn:active {
     transform: translateY(0);
 }
 
-.register-section {
+/* ===== FOOTER ===== */
+.footer {
+    width: 100%;
+    padding: 1.5rem;
     text-align: center;
-    padding: 25px;
-    background: #f8f9fa;
-    border-top: 2px solid #ecf0f1;
+    background: rgba(0, 0, 0, 0.2);
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.95rem;
+    margin-top: auto;
 }
 
-.register-section p {
-    color: #7f8c8d;
-    font-size: 1rem;
-}
-
-.register-section a {
-    color: #e74c3c;
+.footer a {
+    color: var(--accent);
     text-decoration: none;
-    font-weight: 600;
-    transition: color 0.3s ease;
-    font-size: 1.05rem;
 }
 
-.register-section a:hover {
-    color: #c0392b;
+.footer a:hover {
     text-decoration: underline;
 }
 
-.footer {
-    text-align: center;
-    margin-top: 10px;
-    color: white;
-    font-size: 0.95rem;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
-}
-
-/* Responsive Design */
+/* Responsive */
 @media (max-width: 768px) {
-    .form-container {
-        padding: 40px 30px;
+    .login-container {
+        flex-direction: column;
+        max-width: 500px;
     }
-    
-    .hotel-logo h1 {
-        font-size: 1.8rem;
+
+    .login-image {
+        height: 200px;
+        padding: 1.5rem;
+        min-height: auto;
     }
-    
-    .form-container h2 {
-        font-size: 1.9rem;
+
+    .login-form-section {
+        padding: 2.5rem 2rem;
+    }
+
+    .navbar {
+        padding: 1rem 5%;
+    }
+
+    .nav-links {
+        gap: 1.2rem;
+    }
+
+    .nav-links a {
+        font-size: 0.9rem;
     }
 }
 
 @media (max-width: 480px) {
-    .login-box {
-        margin: 15px;
-        border-radius: 20px;
+    .navbar {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
     }
-    
-    .form-container {
-        padding: 35px 25px;
-    }
-    
-    .hotel-logo {
-        padding: 25px 15px;
-    }
-    
-    .hotel-logo i {
-        font-size: 2.8rem;
-    }
-    
-    .hotel-logo h1 {
-        font-size: 1.6rem;
-    }
-    
-    .form-container h2 {
-        font-size: 1.7rem;
-    }
-    
-    .input-group input {
-        padding: 16px 20px 16px 50px;
-        font-size: 1rem;
-    }
-    
-    .login-btn {
-        padding: 16px;
-        font-size: 1.1rem;
-    }
-}
 
-/* Input focus animations */
-.input-group input:focus + .toggle-password {
-    color: #3498db;
-}
-
-.input-group input:focus + i {
-    color: #3498db;
-}
-
-
-.form-container {
-    animation: fadeInUp 0.6s ease-out;
-}
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
+    .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
     }
-    to {
-        opacity: 1;
-        transform: translateY(0);
+
+    .login-form-section {
+        padding: 2rem 1.5rem;
+    }
+
+    .options {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: flex-start;
     }
 }
