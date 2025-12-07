@@ -1,129 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Golden Stay Hotel</title>
     <link rel="stylesheet" href="home.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
 <body>
-   <header class="site-header">
+    <header class="site-header">
         <div class="container header-inner">
-
             <div class="logo-box">
                 <img src="imgs/hotel.png" alt="logo" class="logo-img">
                 <span class="logo-text">Golden Hotel</span>
             </div>
-
             <nav class="main-nav">
-                <a href="home.html">Home</a>
+                <a href="home.html" class="active">Home</a>
                 <a href="Rooms.html">Rooms</a>
                 <a href="Booking.html">Booking</a>
-                <a href="#services">Services</a>
+                <a href="services.html">Services</a>
                 <a href="about.html">About</a>
                 <a href="contact.html">Contact</a>
                 <a href="login.html">Login</a>
                 <a href="signup.html">Sign Up</a>
-                <a href="profile.html">profile</a>
+                <a href="profile.html">Profile</a>
             </nav>
-
         </div>
     </header>
-
-
 
     <main>
         <section class="hero">
             <div class="hero-inner container">
-                <h1>Enjoy Luxury & Comfort</h1>
-                <p>Your perfect stay is one click away</p>
+                <h1>Experience Luxury & Comfort</h1>
+                <p>Your perfect stay is one click away. Discover our world-class hospitality and premium amenities.</p>
                 <div class="hero-actions">
-                    <a class="btn btn-primary" href="#booking">Book Now</a>
-                    <a class="btn btn-secondary" href="#rooms">View Rooms</a>
+                    <a class="btn btn-primary" href="Booking.html">
+                        <i class="fas fa-calendar-check"></i> Book Now
+                    </a>
+                    <a class="btn btn-secondary" href="Rooms.html">
+                        <i class="fas fa-eye"></i> View Rooms
+                    </a>
                 </div>
             </div>
         </section>
 
-        <section id="rooms" class="section rooms-section container">
-            <h2 class="section-title">Rooms</h2>
+        <section class="section rooms-section container">
+            <h2 class="section-title">Featured Rooms</h2>
             <div class="rooms-grid">
                 <article class="room-card">
                     <img src="imgs/Standard Room.jpeg" alt="Standard Room" />
                     <div class="room-info">
                         <h3>Standard Room</h3>
                         <p class="price">$80 / night</p>
-                        <a class="btn-sm" href="#">View Details</a>
+                        <a class="btn-sm" href="Booking.html?room=standard">
+                            <i class="fas fa-book"></i> Book Now
+                        </a>
                     </div>
                     <ul class="room-extra">
-                        <li>• Free Wi-Fi</li>
-                        <li>• Max Guests: 1</li>
-                        <li>• Single Bed</li>
-                        <li>• Air Conditioning</li>
-                        <li>• Free Cancellation</li>
+                        <li>Free Wi-Fi</li>
+                        <li>Max Guests: 1</li>
+                        <li>Single Bed</li>
+                        <li>Air Conditioning</li>
+                        <li>Free Cancellation</li>
                     </ul>
                 </article>
 
-
-
                 <article class="room-card">
-                    <img src="imgs/Deluxe Room.jpeg" alt="Deluxe Room" />
+                    <img src="imgs/Deluxe Room.jpeg" alt="Double Room" />
                     <div class="room-info">
                         <h3>Double Room</h3>
                         <p class="price">$120 / night</p>
-                        <a class="btn-sm" href="#">View Details</a>
+                        <a class="btn-sm" href="Booking.html?room=double">
+                            <i class="fas fa-book"></i> Book Now
+                        </a>
                     </div>
                     <ul class="room-extra">
-                        <li>• Free Wi-Fi</li>
-                        <li>• Max Guests: 2</li>
-                        <li>• Double Bed</li>
-                        <li>• Breakfast Included</li>
-                        <li>• Smart TV</li>
+                        <li>Free Wi-Fi</li>
+                        <li>Max Guests: 2</li>
+                        <li>Double Bed</li>
+                        <li>Breakfast Included</li>
+                        <li>Smart TV</li>
                     </ul>
-
                 </article>
 
-
-
                 <article class="room-card">
-                    <img src="imgs/Suite Room.jpg" alt="Suite" />
+                    <img src="imgs/Suite Room.jpg" alt="Luxury Suite" />
                     <div class="room-info">
                         <h3>Luxury Suite</h3>
                         <p class="price">$180 / night</p>
-                        <a class="btn-sm" href="#">View Details</a>
+                        <a class="btn-sm" href="Booking.html?room=suite">
+                            <i class="fas fa-book"></i> Book Now
+                        </a>
                     </div>
                     <ul class="room-extra">
-                        <li>• King Size Bed</li>
-                        <li>• Max Guests: 4</li>
-                        <li>• Private Living Area</li>
-                        <li>• Jacuzzi + Balcony</li>
-                        <li>• Free Breakfast & Room Service</li>
+                        <li>King Size Bed</li>
+                        <li>Max Guests: 4</li>
+                        <li>Private Living Area</li>
+                        <li>Jacuzzi + Balcony</li>
+                        <li>Free Breakfast & Room Service</li>
                     </ul>
-
                 </article>
             </div>
         </section>
 
-        <section id="services" class="section services-section">
+        <section class="services-section">
             <div class="container">
                 <h2 class="section-title">Our System Features</h2>
                 <div class="services-grid">
-                    <div class="service-box">🛏 <span>Online Reservations</span></div>
-                    <div class="service-box">💳 <span>Payment Options: Credit or Cash</span></div>
-                    <div class="service-box">✉️ <span>Booking Confirmation Email</span></div>
-                    <div class="service-box">📊 <span>Admin Reports & Room Management</span></div>
-                    <div class="service-box">🧾 <span>Reception Cash Handling & Customer Data Editing</span></div>
+                    <div class="service-box" data-icon="🛏">
+                        <span>Online Reservations</span>
+                    </div>
+                    <div class="service-box" data-icon="💳">
+                        <span>Payment Options: Credit or Cash</span>
+                    </div>
+                    <div class="service-box" data-icon="✉️">
+                        <span>Booking Confirmation Email</span>
+                    </div>
+                    <div class="service-box" data-icon="📊">
+                        <span>Admin Reports & Room Management</span>
+                    </div>
+                    <div class="service-box" data-icon="🧾">
+                        <span>Reception Cash Handling & Customer Data Editing</span>
+                    </div>
                 </div>
             </div>
         </section>
-
     </main>
 
     <footer class="site-footer">
         <div class="container footer-inner">
-            <p>© 2025 Golden Stay Hotel | All Rights Reserved</p>
-            <br>
+            <p>© 2025 Golden Hotel | All Rights Reserved</p>
             <div class="socials">
                 <a href="#"><img src="imgs/facebook.png" alt="Facebook" /></a>
                 <a href="#"><img src="imgs/insta.jpg" alt="Instagram" /></a>
@@ -131,6 +138,71 @@
             </div>
         </div>
     </footer>
-</body>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add active class to current page
+            const currentPage = window.location.pathname.split('/').pop();
+            const navLinks = document.querySelectorAll('.main-nav a');
+            
+            navLinks.forEach(link => {
+                if (link.getAttribute('href') === currentPage) {
+                    link.classList.add('active');
+                }
+            });
+            
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Add animation to service boxes on scroll
+            const observerOptions = {
+                threshold: 0.2,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            // Observe service boxes
+            document.querySelectorAll('.service-box').forEach(box => {
+                box.style.opacity = '0';
+                box.style.transform = 'translateY(20px)';
+                box.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(box);
+            });
+            
+            // Observe room cards
+            document.querySelectorAll('.room-card').forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(card);
+                
+                // Add animation delay for each card
+                const index = Array.from(card.parentElement.children).indexOf(card);
+                card.style.transitionDelay = `${index * 0.1}s`;
+            });
+        });
+    </script>
+</body>
 </html>

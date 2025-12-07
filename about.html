@@ -5,84 +5,187 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us - Golden Hotel</title>
     <link rel="stylesheet" href="about.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
 
     <!-- ================= HEADER ================= -->
     <header class="site-header">
         <div class="container header-inner">
-
             <div class="logo-box">
                 <img src="imgs/hotel.png" alt="logo" class="logo-img">
                 <span class="logo-text">Golden Hotel</span>
             </div>
-
             <nav class="main-nav">
                 <a href="home.html">Home</a>
                 <a href="Rooms.html">Rooms</a>
                 <a href="Booking.html">Booking</a>
-                <a href="#services">Services</a>
-                <a href="about.html">About</a>
+                <a href="services.html">Services</a>
+                <a href="about.html" class="active">About</a>
                 <a href="contact.html">Contact</a>
                 <a href="login.html">Login</a>
                 <a href="signup.html">Sign Up</a>
-                <a href="profile.html">profile</a>
+                <a href="profile.html">Profile</a>
             </nav>
-
         </div>
     </header>
 
-
-    <!-- ================= HERO / BACKGROUND IMAGE ================= -->
+    <!-- ================= HERO SECTION ================= -->
     <section class="hero-section">
-        <div class="overlay">
-            <h1>About Our Hotel</h1>
-            <p>Comfort, Luxury, and Exceptional Hospitality</p>
+        <div class="hero-overlay">
+            <div class="container">
+                <h1><i class="fas fa-star"></i> About Golden Hotel</h1>
+                <p class="hero-subtitle">Experience Luxury, Comfort, and Exceptional Hospitality</p>
+            </div>
         </div>
     </section>
 
-    <!-- ================= ABOUT SECTION ================= -->
-    <section class="about-container" id="about">
-        <h2>Who We Are</h2>
-        <p>
-            Golden Hotel is a modern and welcoming hospitality destination 
-            designed to offer guests comfort, elegance, and a memorable experience.
-            We aim to provide a simple and seamless hotel management system that makes 
-            it easy for visitors to explore rooms, book their stay, and enjoy high-quality services.
-        </p>
-        <h2>Our Vision</h2>
-        <p>
-            To become one of the most trusted and user-friendly hotel platforms 
-            by combining comfort, luxury, and innovative technology.
-            We aspire to create a system that supports both guests and hotel administrators with clear, organized, and efficient tools.
-        </p>
-        <h2>Our Mission</h2>
-        <p>
-            Our mission is to simplify hotel operations for both guests and staff.
-            We provide an easy way to browse rooms, check availability, make bookings, and manage user profiles.
-           At the same time, the system helps administrators monitor reservations, manage rooms, and keep track of visitors effortlessly.
-        </p>
-    </section>
+    <!-- ================= MAIN CONTENT ================= -->
+    <main class="container">
+        <!-- About Intro -->
+        <section class="about-intro">
+            <div class="intro-content">
+                <h2><i class="fas fa-hotel"></i> Welcome to Golden Hotel</h2>
+                <p class="intro-text">
+                    Since 2010, Golden Hotel has been redefining luxury hospitality with a perfect blend of modern 
+                    elegance and traditional warmth. Nestled in the heart of the city, we offer an unparalleled 
+                    experience for both leisure and business travelers.
+                </p>
+            </div>
+        </section>
 
-    <!-- ================= TEAM SECTION ================= -->
-    <section class="team-section">
-        <h2>Our Team</h2>
-        <div class="team-grid">
-            <div class="member">OMAR SHEHATA</div>
-            <div class="member">AHMED SULTN</div>
-            <div class="member">AMR AADEL</div>
-            <div class="member">AMR AHMED</div>
-            <div class="member">BASEL</div>
-            <div class="member">ANAS</div>
-            <div class="member">YAASER</div>
+        <!-- Vision & Mission -->
+        <div class="vision-mission-grid">
+            <div class="vision-card">
+                <div class="icon-box">
+                    <i class="fas fa-eye"></i>
+                </div>
+                <h3>Our Vision</h3>
+                <p>
+                    To be the most trusted and preferred luxury hotel brand, known for exceptional service, 
+                    innovative experiences, and sustainable hospitality practices that set new standards in the industry.
+                </p>
+            </div>
+
+            <div class="mission-card">
+                <div class="icon-box">
+                    <i class="fas fa-bullseye"></i>
+                </div>
+                <h3>Our Mission</h3>
+                <p>
+                    To provide unforgettable experiences through personalized service, world-class amenities, 
+                    and attention to detail that exceeds guest expectations while maintaining the highest 
+                    standards of quality and sustainability.
+                </p>
+            </div>
         </div>
-    </section>
+
+        <!-- Values Section -->
+        <section class="values-section">
+            <h2><i class="fas fa-gem"></i> Our Core Values</h2>
+            <div class="values-grid">
+                <div class="value-card">
+                    <i class="fas fa-user-check"></i>
+                    <h3>Guest Focus</h3>
+                    <p>Every decision is made with our guests' comfort and satisfaction in mind.</p>
+                </div>
+                <div class="value-card">
+                    <i class="fas fa-award"></i>
+                    <h3>Excellence</h3>
+                    <p>Striving for perfection in every service we provide and every interaction we have.</p>
+                </div>
+                <div class="value-card">
+                    <i class="fas fa-leaf"></i>
+                    <h3>Sustainability</h3>
+                    <p>Committed to eco-friendly practices and responsible tourism.</p>
+                </div>
+                <div class="value-card">
+                    <i class="fas fa-users"></i>
+                    <h3>Teamwork</h3>
+                    <p>Our dedicated staff works together to create memorable experiences.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team Section -->
+        <section class="team-section">
+            <h2><i class="fas fa-users-cog"></i> Meet Our Team</h2>
+            <p class="team-subtitle">The passionate professionals behind your exceptional stay</p>
+            
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-avatar">OS</div>
+                    <h3>Omar Shehata</h3>
+                    <p class="team-role">General Manager</p>
+                    <p class="team-desc">20+ years in hospitality management</p>
+                </div>
+                <div class="team-card">
+                    <div class="team-avatar">AS</div>
+                    <h3>Ahmed Sultan</h3>
+                    <p class="team-role">Operations Director</p>
+                    <p class="team-desc">Ensuring seamless hotel operations</p>
+                </div>
+                <div class="team-card">
+                    <div class="team-avatar">AA</div>
+                    <h3>Amr Aadel</h3>
+                    <p class="team-role">Guest Relations</p>
+                    <p class="team-desc">Dedicated to guest satisfaction</p>
+                </div>
+                <div class="team-card">
+                    <div class="team-avatar">AA</div>
+                    <h3>Amr Ahmed</h3>
+                    <p class="team-role">Head Chef</p>
+                    <p class="team-desc">Culinary excellence specialist</p>
+                </div>
+                <div class="team-card">
+                    <div class="team-avatar">B</div>
+                    <h3>Basel</h3>
+                    <p class="team-role">IT Manager</p>
+                    <p class="team-desc">Technology & systems expert</p>
+                </div>
+                <div class="team-card">
+                    <div class="team-avatar">A</div>
+                    <h3>Anas</h3>
+                    <p class="team-role">Sales Director</p>
+                    <p class="team-desc">Business development strategist</p>
+                </div>
+                <div class="team-card">
+                    <div class="team-avatar">Y</div>
+                    <h3>Yaaser</h3>
+                    <p class="team-role">Head of Housekeeping</p>
+                    <p class="team-desc">Maintaining impeccable standards</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Achievements -->
+        <section class="achievements-section">
+            <h2><i class="fas fa-trophy"></i> Our Achievements</h2>
+            <div class="achievements-grid">
+                <div class="achievement">
+                    <div class="achievement-number">15+</div>
+                    <p>Years of Excellence</p>
+                </div>
+                <div class="achievement">
+                    <div class="achievement-number">10K+</div>
+                    <p>Happy Guests</p>
+                </div>
+                <div class="achievement">
+                    <div class="achievement-number">50+</div>
+                    <p>Team Members</p>
+                </div>
+                <div class="achievement">
+                    <div class="achievement-number">25+</div>
+                    <p>Awards Won</p>
+                </div>
+            </div>
+        </section>
+    </main>
 
     <!-- ================= FOOTER ================= -->
     <footer class="site-footer">
         <div class="container footer-inner">
-            <p>© 2025 Golden Stay Hotel | All Rights Reserved</p>
-            <br>
+            <p>© 2025 Golden Hotel | All Rights Reserved</p>
             <div class="socials">
                 <a href="#"><img src="imgs/facebook.png" alt="Facebook"></a>
                 <a href="#"><img src="imgs/insta.jpg" alt="Instagram"></a>

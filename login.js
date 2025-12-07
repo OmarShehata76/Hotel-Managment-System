@@ -49,11 +49,11 @@ document.addEventListener('DOMContentLoaded', function () {
     const inputs = document.querySelectorAll('.form-group input');
     inputs.forEach(input => {
         input.addEventListener('focus', function() {
-            this.parentElement.querySelector('i:not(.toggle-password)').style.color = 'var(--secondary)';
+            this.parentElement.querySelector('i:not(.toggle-password)').style.color = '#d4a017';
         });
         
         input.addEventListener('blur', function() {
-            this.parentElement.querySelector('i:not(.toggle-password)').style.color = 'var(--gray)';
+            this.parentElement.querySelector('i:not(.toggle-password)').style.color = '#7f8c8d';
         });
     });
 });

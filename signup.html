@@ -1,48 +1,163 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Sign Up </title> 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-  <link rel="stylesheet" href="signup.css">
-  <style>
-    
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Golden Hotel - Sign Up</title>
+    <link rel="stylesheet" href="signup.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
-
 <body>
-    <div class="card">
-  <section class="signup-main">
-    <a id="SignupPAGE-logo" href="homePage.html" class="logo"> HILTON HOTEL</a>
-    <h1 class="createTEXT-signup-page">Create an account</h1>
-    <div>
-      <form id="signupForm" novalidate>
-        <div id="signupError" class="error-msg"></div>
-        <div class="form-group">
-            <label for="name">Name</label>
-            <input class="signup-page-boxes" id="name" name="name" placeholder="Full name" type="text">
+
+    <header class="site-header">
+        <div class="container header-inner">
+            <div class="logo-box">
+                <img src="imgs/hotel.png" alt="logo" class="logo-img">
+                <span class="logo-text">Golden Hotel</span>
+            </div>
+            <nav class="main-nav">
+                <a href="home.html">Home</a>
+                <a href="Rooms.html">Rooms</a>
+                <a href="Booking.html">Booking</a>
+                <a href="services.html">Services</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+                <a href="login.html">Login</a>
+                <a href="signup.html" class="active">Sign Up</a>
+                <a href="profile.html">Profile</a>
+            </nav>
         </div>
-        <div class="form-group">
-            <label for="email">Email</label>
-            <input class="signup-page-boxes" id="email" name="email" placeholder="Example@gmail.com" type="email">
-        </div>
-        <div class="form-group">
-            <label for="password">Password</label>
-            <input class="signup-page-boxes" id="password" name="password" placeholder="New password" type="password">
-        </div>
-        <div class="form-group">
-            <label for="confirmPassword">Re-enter Password</label>
-            <input class="signup-page-boxes" id="confirmPassword" name="confirmPassword" placeholder="Enter the same password" type="password">
-        </div>
-        <div class="submit-button">
-            <input type="submit" value="SIGN UP">
+    </header>
+
+    <main class="main-content">
+        <div class="signup-container">
+            <div class="signup-image">
+                <div class="image-overlay">
+                    <h2>Join Our Community</h2>
+                    <p>Create your account and start enjoying exclusive benefits and special offers.</p>
+                    
+                    <div class="benefits-list">
+                        <h3>Member Benefits:</h3>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Exclusive room discounts</li>
+                            <li><i class="fas fa-check-circle"></i> Priority booking</li>
+                            <li><i class="fas fa-check-circle"></i> Special offers & promotions</li>
+                            <li><i class="fas fa-check-circle"></i> Faster check-in/out</li>
+                            <li><i class="fas fa-check-circle"></i> Personalized services</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
             
+            <div class="signup-form-section">
+                <div class="form-header">
+                    <h1>Create Account</h1>
+                    <p>Fill in your details to get started</p>
+                </div>
+                
+                <form id="signupForm">
+                    <div class="form-grid">
+                        <!-- First Name -->
+                        <div class="form-group with-icon">
+                            <label>First Name</label>
+                            <i class="fas fa-user"></i>
+                            <input type="text" id="firstName" placeholder="John" required>
+                        </div>
+                        
+                        <!-- Last Name -->
+                        <div class="form-group with-icon">
+                            <label>Last Name</label>
+                            <i class="fas fa-user"></i>
+                            <input type="text" id="lastName" placeholder="Doe" required>
+                        </div>
+                        
+                        <!-- Email -->
+                        <div class="form-group with-icon full-width">
+                            <label>Email Address</label>
+                            <i class="fas fa-envelope"></i>
+                            <input type="email" id="email" placeholder="john@example.com" required>
+                        </div>
+                        
+                        <!-- Phone -->
+                        <div class="form-group with-icon">
+                            <label>Phone Number</label>
+                            <i class="fas fa-phone"></i>
+                            <input type="tel" id="phone" placeholder="+20 100 000 0000" required>
+                        </div>
+                        
+                        <!-- Date of Birth -->
+                        <div class="form-group">
+                            <label>Date of Birth</label>
+                            <input type="date" id="dob" required>
+                        </div>
+                        
+                        <!-- Username -->
+                        <div class="form-group with-icon full-width">
+                            <label>Username</label>
+                            <i class="fas fa-user-circle"></i>
+                            <input type="text" id="username" placeholder="Choose a username" required>
+                        </div>
+                        
+                        <!-- Password -->
+                        <div class="form-group with-icon">
+                            <label>Password</label>
+                            <i class="fas fa-lock"></i>
+                            <input type="password" id="password" placeholder="********" required>
+                            <button type="button" class="toggle-password" id="togglePassword">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                        
+                        <!-- Confirm Password -->
+                        <div class="form-group with-icon">
+                            <label>Confirm Password</label>
+                            <i class="fas fa-lock"></i>
+                            <input type="password" id="confirmPassword" placeholder="********" required>
+                            <button type="button" class="toggle-password" id="toggleConfirmPassword">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                        
+                        <!-- Checkboxes -->
+                        <div class="checkbox-group">
+                            <label class="terms-checkbox">
+                                <input type="checkbox" required>
+                                <span>I agree to the <a href="#">Terms & Conditions</a> and <a href="#">Privacy Policy</a></span>
+                            </label>
+                            
+                            <label class="newsletter-checkbox">
+                                <input type="checkbox" checked>
+                                <span>Subscribe to newsletter for special offers and updates</span>
+                            </label>
+                        </div>
+                        
+                        <!-- Submit Button -->
+                        <button type="submit" class="signup-btn">
+                            <i class="fas fa-user-plus"></i> Create Account
+                        </button>
+                        
+                        <!-- Login Link -->
+                        <div class="login-link">
+                            <p>Already have an account? <a href="login.html">Login here</a></p>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
-    </form>
-    </div>
-  </section>
+    </main>
 
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <p>© 2025 Golden Hotel | All Rights Reserved</p>
+            <br>
+            <div class="socials">
+                <a href="#"><img src="imgs/facebook.png" alt="Facebook" /></a>
+                <a href="#"><img src="imgs/insta.jpg" alt="Instagram" /></a>
+                <a href="#"><img src="imgs/twitr.jpg" alt="Twitter" /></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="signup.js"></script>
 </body>
 </html>
-

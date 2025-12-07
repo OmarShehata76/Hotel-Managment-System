@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Room Details - Golden Stay Hotel</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f4f6f8;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+            padding: 0 15px;
+        }
+
+        .site-header {
+            background: rgba(30, 30, 30, 0.92);
+            padding: 15px 0;
+            color: #fff;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            width: 100%;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+        }
+
+        /* container of header */
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        /* Logo */
+        .logo-box {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-left: -160px;
+        }
+
+        .logo-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .logo-text {
+            font-size: 26px;
+            font-weight: bold;
+            width: max-content;
+            padding: 5px 12px;
+            margin-right: 20px;
+            background: #d4a017;
+            border-radius: 6px;
+            color: #fff;
+        }
+
+        /* Navigation */
+        .main-nav {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            margin-left: 107px;
+        }
+
+        .main-nav a {
+            text-decoration: none;
+            padding: 10px 18px;
+            background: rgba(255, 255, 255, 0.12);
+            color: #fff;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: 0.3s;
+            white-space: nowrap;
+            margin-right: 15px;
+        }
+
+        .main-nav a:hover {
+            background: #d4a017;
+            transform: translateY(-3px);
+        }
+
+        .main-nav a.active {
+            background: #d4a017;
+        }
+
+        .room-container {
+            display: flex;
+            gap: 40px;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            flex-wrap: wrap;
+            margin-bottom: 50px;
+        }
+
+        .room-image {
+            flex: 1 1 500px;
+        }
+
+        .room-image img {
+            width: 100%;
+            border-radius: 12px;
+            height: 450px;
+            object-fit: cover;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .room-info-sec {
+            flex: 1 1 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .room-title {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+
+        .price-tag {
+            font-size: 1.8rem;
+            color: #d4a017;
+            margin-bottom: 25px;
+            font-weight: bold;
+        }
+
+        .features ul {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+
+        .features li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            font-size: 1.05rem;
+        }
+
+        .features li::before {
+            content: "✔";
+            color: #d4a017;
+            margin-right: 12px;
+            font-weight: bold;
+        }
+
+        .btn-primary {
+            width: 100%;
+            padding: 15px;
+            background: #d4a017;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .btn-primary:hover {
+            background: #bfa313;
+        }
+
+        .site-footer {
+            background: #1e1e1e;
+            color: #fff;
+            text-align: center;
+            padding: 40px 0;
+            margin-top: auto;
+        }
+
+        .socials {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .socials img {
+            width: 32px;
+            height: 32px;
+            transition: 0.3s;
+            filter: invert(1);
+        }
+
+        .socials img:hover {
+            transform: scale(1.1);
+            filter: invert(0.8) sepia(1) saturate(5) hue-rotate(5deg);
+        }
+
+        @media (max-width: 992px) {
+            .logo-box {
+                margin-left: 0;
+            }
+
+            .main-nav {
+                margin-left: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .room-container {
+                flex-direction: column;
+            }
+
+            .room-image {
+                height: 300px;
+            }
+
+            .header-inner {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .main-nav {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="site-header">
+        <div class="container header-inner">
+
+            <div class="logo-box">
+                <img src="imgs/hotel.png" alt="logo" class="logo-img">
+                <span class="logo-text">Golden Hotel</span>
+            </div>
+
+            <nav class="main-nav">
+                <a href="home.html">Home</a>
+                <a href="Rooms.html">Rooms</a>
+                <a href="Booking.html">Booking</a>
+                <a href="services.html">Services</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+                <a href="login.html">Login</a>
+                <a href="signup.html">Sign Up</a>
+                <a href="profile.html">profile</a>
+            </nav>
+
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="room-container">
+
+            <div class="room-image">
+                <img id="room-img" src="" alt="Room Image">
+            </div>
+
+            <div class="room-info-sec">
+                <h1 id="room-title" class="room-title">Loading...</h1>
+
+                <span
+                    style="background: #d4edda; color: #155724; padding: 6px 12px; border-radius: 5px; font-size: 0.95rem; font-weight: bold; display: inline-block; margin-bottom: 15px; border: 1px solid #c3e6cb;">
+                    ✔ Available Now
+                </span>
+
+                <p class="price-tag"><span id="room-price">0</span> <span
+                        style="font-size: 1rem; color: #777; font-weight: normal;">/ Night</span></p>
+
+                <div class="features">
+                    <h3>Room Features:</h3>
+                    <ul id="room-features"></ul>
+                </div>
+
+                <p id="room-desc" style="margin-bottom: 30px; color: #555; line-height: 1.6;">
+                    Loading description...
+                </p>
+
+                <button onclick="goToBookingPage()" class="btn-primary">
+                    Proceed to Booking ➔
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <p>© 2025 Golden Stay Hotel | All Rights Reserved</p>
+            <div class="socials">
+                <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook"></a>
+                <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram"></a>
+                <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="Twitter"></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const roomsDB = {
+            "standard": {
+                title: "Standard Room", price: "$80",
+                image: "imgs/Standard Room.jpeg",
+                features: ["Free Wi-Fi", "Max Guests: 1", "Single Bed", "Air Conditioning", "Free Cancellation"],
+                desc: "Our Standard Room offers comfort and convenience for solo travelers. Enjoy a cozy stay with all essential amenities."
+            },
+            "double": {
+                title: "Double Room", price: "$120",
+                image: "imgs/Deluxe Room.jpeg",
+                features: ["Free Wi-Fi", "Max Guests: 2", "Double Bed", "Breakfast Included", "Smart TV"],
+                desc: "Perfect for couples or friends, the Double Room features a spacious layout, modern decor, and a beautiful city view."
+            },
+            "suite": {
+                title: "Luxury Suite", price: "$180",
+                image: "imgs/Suite Room.jpg",
+                features: ["King Size Bed", "Max Guests: 4", "Private Living Area", "Jacuzzi + Balcony", "Room Service"],
+                desc: "Experience ultimate luxury in our Suite. Includes a private living area, premium bedding, and exclusive access to hotel services."
+            }
+        };
+
+        function getRoomType() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('room') || 'double';
+        }
+
+        function loadRoomDetails() {
+            const roomType = getRoomType();
+            const room = roomsDB[roomType];
+            if (room) {
+                document.getElementById('room-title').innerText = room.title;
+                document.getElementById('room-price').innerText = room.price;
+                document.getElementById('room-img').src = room.image;
+                document.getElementById('room-desc').innerText = room.desc;
+                const featuresList = document.getElementById('room-features');
+                featuresList.innerHTML = "";
+                room.features.forEach(f => {
+                    const li = document.createElement('li'); li.innerText = f; featuresList.appendChild(li);
+                });
+            }
+        }
+
+        function goToBookingPage() {
+            const roomType = getRoomType();
+            window.location.href = `Booking.html?room=${roomType}`;
+        }
+
+        window.onload = loadRoomDetails;
+    </script>
+
+</body>
+
+</html>
