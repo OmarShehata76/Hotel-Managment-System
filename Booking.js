@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
             title: "Standard Room", 
             priceVal: 80, 
             price: "$80", 
-            image: "imgs/Standard Room.jpeg",
+            image: "imgs/premium_photo-1661962493427-910e3333cf5a.avif",
             capacity: "1 Guest",
             bed: "Single Bed",
             badge: "Economy"
