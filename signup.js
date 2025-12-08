@@ -1,11 +1,16 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // Password toggle functionality
+    // DOM Elements
     const togglePassword = document.getElementById('togglePassword');
     const toggleConfirmPassword = document.getElementById('toggleConfirmPassword');
     const passwordField = document.getElementById('password');
     const confirmPasswordField = document.getElementById('confirmPassword');
+    const signupForm = document.getElementById('signupForm');
+    const dobInput = document.getElementById('dob');
+    const ageInput = document.getElementById('age');
+    const ageDisplay = document.getElementById('ageDisplay');
+    const ageError = document.getElementById('ageError');
 
-    // Toggle password visibility for password field
+    // Password toggle functionality
     if (togglePassword && passwordField) {
         togglePassword.addEventListener('click', function () {
             if (passwordField.type === 'password') {
@@ -20,7 +25,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Toggle password visibility for confirm password field
     if (toggleConfirmPassword && confirmPasswordField) {
         toggleConfirmPassword.addEventListener('click', function () {
             if (confirmPasswordField.type === 'password') {
@@ -35,8 +39,51 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    // Calculate age from Date of Birth
+    if (dobInput) {
+        dobInput.addEventListener('change', function() {
+            const dob = new Date(this.value);
+            if (isValidDate(dob)) {
+                const age = calculateAge(dob);
+                ageInput.value = age;
+                updateAgeDisplay(age);
+                validateAge(age);
+                
+                // Auto-adjust date based on age if age was manually entered first
+                if (ageInput.value && ageInput.value >= 18) {
+                    setDobFromAge(ageInput.value);
+                }
+            }
+        });
+    }
+
+    // Age input validation and auto-update Date of Birth
+    if (ageInput) {
+        ageInput.addEventListener('input', function() {
+            const age = parseInt(this.value);
+            
+            // Show/hide age display
+            if (!isNaN(age) && age > 0) {
+                ageDisplay.textContent = `(${age} years)`;
+                updateAgeDisplay(age);
+                validateAge(age);
+                
+                // Auto-update Date of Birth when age is entered
+                if (age >= 18) {
+                    setDobFromAge(age);
+                }
+            } else {
+                ageDisplay.textContent = '';
+            }
+        });
+
+        ageInput.addEventListener('blur', function() {
+            const age = parseInt(this.value);
+            validateAge(age);
+        });
+    }
+
     // Form submission
-    const signupForm = document.getElementById('signupForm');
     if (signupForm) {
         signupForm.addEventListener('submit', function (e) {
             e.preventDefault();
@@ -50,11 +97,21 @@ document.addEventListener('DOMContentLoaded', function () {
             const password = document.getElementById('password').value;
             const confirmPassword = document.getElementById('confirmPassword').value;
             const dob = document.getElementById('dob').value;
+            const age = parseInt(ageInput.value);
             const termsAccepted = document.querySelector('.terms-checkbox input').checked;
 
-            // Validation
+            // Basic validation
             if (!firstName || !lastName || !email || !phone || !username || !password || !confirmPassword || !dob) {
                 showAlert('⚠ Please fill in all required fields.', 'error');
+                return;
+            }
+
+            // Age validation
+            if (isNaN(age) || age < 18) {
+                showAlert('⚠ You must be at least 18 years old to register.', 'error');
+                ageError.style.display = 'block';
+                ageInput.style.borderColor = '#e74c3c';
+                ageInput.focus();
                 return;
             }
 
@@ -82,28 +139,23 @@ document.addEventListener('DOMContentLoaded', function () {
             }
 
             // Phone validation
-            const phoneRegex = /^[+]?[\d\s\-\(\)]+$/;
-            if (!phoneRegex.test(phone)) {
-                showAlert('⚠ Please enter a valid phone number.', 'error');
+            const phoneRegex = /^[+]?[\d\s\-\(\)]{8,20}$/;
+            if (!phoneRegex.test(phone.replace(/\s/g, ''))) {
+                showAlert('⚠ Please enter a valid phone number (8-20 digits).', 'error');
                 return;
             }
 
-            // Age validation (must be at least 18 years old)
-            const today = new Date();
+            // Verify age matches date of birth
             const birthDate = new Date(dob);
-            const age = today.getFullYear() - birthDate.getFullYear();
-            const monthDiff = today.getMonth() - birthDate.getMonth();
-            
-            if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
-                age--;
-            }
-            
-            if (age < 18) {
-                showAlert('⚠ You must be at least 18 years old to register.', 'error');
-                return;
+            if (isValidDate(birthDate)) {
+                const calculatedAge = calculateAge(birthDate);
+                if (Math.abs(calculatedAge - age) > 1) {
+                    showAlert('⚠ Age does not match the date of birth. Please verify your information.', 'warning');
+                    return;
+                }
             }
 
-            // Check if username already exists
+            // Check if username/email already exists
             const users = JSON.parse(localStorage.getItem('hotelUsers')) || [];
             const userExists = users.find(user => user.username === username || user.email === email);
             
@@ -121,12 +173,15 @@ document.addEventListener('DOMContentLoaded', function () {
                 email: email,
                 phone: phone,
                 username: username,
-                password: password, // In real app, this should be hashed
+                password: password,
                 dob: dob,
+                age: age,
                 createdAt: new Date().toISOString(),
                 bookings: [],
                 isSubscribed: document.querySelector('.newsletter-checkbox input').checked,
-                role: 'user'
+                role: 'user',
+                membershipLevel: 'Bronze',
+                points: 100 // Bonus points for new signup
             };
 
             // Save user to localStorage
@@ -141,7 +196,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Add focus effects to inputs
+    // Focus effects for inputs
     const inputs = document.querySelectorAll('.form-group input');
     inputs.forEach(input => {
         input.addEventListener('focus', function() {
@@ -161,18 +216,89 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // Set min date for date of birth (18 years ago)
-    const dobInput = document.getElementById('dob');
+    // Set date limits for Date of Birth
     if (dobInput) {
         const today = new Date();
-        const minDate = new Date(today.getFullYear() - 100, today.getMonth(), today.getDate());
+        const minDate = new Date(today.getFullYear() - 120, today.getMonth(), today.getDate());
         const maxDate = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate());
         
         dobInput.min = minDate.toISOString().split('T')[0];
         dobInput.max = maxDate.toISOString().split('T')[0];
+        
+        // Set default to 25 years ago
+        const defaultDate = new Date(today.getFullYear() - 25, today.getMonth(), today.getDate());
+        dobInput.value = defaultDate.toISOString().split('T')[0];
+        
+        // Calculate initial age
+        const initialAge = calculateAge(defaultDate);
+        ageInput.value = initialAge;
+        updateAgeDisplay(initialAge);
     }
 
-    // Helper function to show alerts
+    // Helper Functions
+    function calculateAge(birthDate) {
+        const today = new Date();
+        let age = today.getFullYear() - birthDate.getFullYear();
+        const monthDiff = today.getMonth() - birthDate.getMonth();
+        
+        if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+            age--;
+        }
+        
+        return age;
+    }
+
+    function isValidDate(date) {
+        return date instanceof Date && !isNaN(date);
+    }
+
+    function validateAge(age) {
+        if (isNaN(age)) {
+            ageError.style.display = 'none';
+            ageInput.style.borderColor = '#e1e5e9';
+            return false;
+        }
+        
+        if (age < 18) {
+            ageError.style.display = 'block';
+            ageInput.style.borderColor = '#e74c3c';
+            return false;
+        } else {
+            ageError.style.display = 'none';
+            ageInput.style.borderColor = '#4CAF50';
+            return true;
+        }
+    }
+
+    function updateAgeDisplay(age) {
+        if (isNaN(age)) {
+            ageDisplay.textContent = '';
+            return;
+        }
+        
+        ageDisplay.textContent = `(${age} years)`;
+        
+        if (age < 18) {
+            ageDisplay.style.color = '#e74c3c';
+        } else if (age < 30) {
+            ageDisplay.style.color = '#2ecc71';
+        } else if (age < 50) {
+            ageDisplay.style.color = '#3498db';
+        } else {
+            ageDisplay.style.color = '#9b59b6';
+        }
+    }
+
+    function setDobFromAge(age) {
+        const today = new Date();
+        const birthYear = today.getFullYear() - age;
+        const dobDate = new Date(birthYear, today.getMonth(), today.getDate());
+        
+        if (dobInput) {
+            dobInput.value = dobDate.toISOString().split('T')[0];
+        }
+    }
+
     function showAlert(message, type = 'info') {
         const alertDiv = document.createElement('div');
         alertDiv.style.cssText = `
@@ -180,20 +306,22 @@ document.addEventListener('DOMContentLoaded', function () {
             top: 20px;
             right: 20px;
             padding: 15px 25px;
-            background: ${type === 'error' ? '#f44336' : '#4CAF50'};
+            background: ${type === 'error' ? '#f44336' : type === 'warning' ? '#ff9800' : '#4CAF50'};
             color: white;
             border-radius: 8px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
             z-index: 1000;
             font-weight: 600;
             animation: slideIn 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            max-width: 400px;
         `;
         
         alertDiv.innerHTML = `
-            <div style="display: flex; align-items: center; gap: 10px;">
-                <i class="fas fa-${type === 'error' ? 'exclamation-triangle' : 'check-circle'}"></i>
-                <span>${message}</span>
-            </div>
+            <i class="fas fa-${type === 'error' ? 'exclamation-triangle' : type === 'warning' ? 'exclamation-circle' : 'check-circle'}"></i>
+            <span>${message}</span>
         `;
         
         document.body.appendChild(alertDiv);
@@ -204,7 +332,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }, 4000);
     }
 
-    // Show success modal
     function showSuccessModal(user) {
         const modal = document.createElement('div');
         modal.style.cssText = `
@@ -241,21 +368,24 @@ document.addEventListener('DOMContentLoaded', function () {
                 </p>
                 
                 <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin-bottom: 25px; text-align: left;">
-                    <p><strong>Username:</strong> ${user.username}</p>
-                    <p><strong>Email:</strong> ${user.email}</p>
-                    <p><strong>Account Created:</strong> ${new Date().toLocaleDateString()}</p>
+                    <p><i class="fas fa-user"></i> <strong>Username:</strong> ${user.username}</p>
+                    <p><i class="fas fa-envelope"></i> <strong>Email:</strong> ${user.email}</p>
+                    <p><i class="fas fa-birthday-cake"></i> <strong>Age:</strong> ${user.age} years</p>
+                    <p><i class="fas fa-calendar"></i> <strong>Account Created:</strong> ${new Date().toLocaleDateString()}</p>
                 </div>
                 
-                <p style="color: #7f8c8d; font-size: 0.9rem; margin-bottom: 25px;">
-                    You can now book rooms and enjoy exclusive member benefits!
-                </p>
+                <div style="background: #fff8e1; padding: 15px; border-radius: 8px; margin-bottom: 25px; border-left: 4px solid #d4a017;">
+                    <p style="color: #856404; margin: 0;">
+                        <i class="fas fa-gift"></i> <strong>Welcome Bonus:</strong> 100 Reward Points!
+                    </p>
+                </div>
                 
                 <div style="display: flex; gap: 15px; justify-content: center;">
                     <button onclick="window.location.href='profile.html';" 
                             style="padding: 12px 30px; background: #d4a017; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; transition: 0.3s;">
                         <i class="fas fa-user-circle"></i> Go to Profile
                     </button>
-                    <button onclick="window.location.href='home.html';" 
+                    <button onclick="window.location.href='index.html';" 
                             style="padding: 12px 30px; background: #2c3e50; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; transition: 0.3s;">
                         <i class="fas fa-home"></i> Go to Home
                     </button>
@@ -291,6 +421,14 @@ document.addEventListener('DOMContentLoaded', function () {
         @keyframes popIn {
             from { transform: scale(0.8); opacity: 0; }
             to { transform: scale(1); opacity: 1; }
+        }
+        
+        input:invalid {
+            border-color: #e74c3c !important;
+        }
+        
+        input:valid {
+            border-color: #2ecc71 !important;
         }
     `;
     document.head.appendChild(style);
