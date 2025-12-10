@@ -26,7 +26,6 @@ body {
 /* ============================ */
 /*           HEADER            */
 /* ============================ */
-
 .site-header {
     background: rgba(30, 30, 30, 0.92);
     padding: 15px 0;
@@ -99,73 +98,6 @@ body {
     box-shadow: 0 4px 8px rgba(212, 160, 23, 0.3);
 }
 
-
-/* Age field specific styles */
-#age {
-    padding-right: 80px;
-}
-
-#ageDisplay {
-    font-size: 0.9rem;
-    margin-left: 5px;
-}
-
-#ageError {
-    animation: fadeIn 0.3s ease;
-}
-
-/* Age validation indicators */
-.age-valid {
-    border-color: #2ecc71 !important;
-}
-
-.age-invalid {
-    border-color: #e74c3c !important;
-}
-
-.age-warning {
-    border-color: #f39c12 !important;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-5px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* Age suggestions */
-.age-suggestions {
-    display: flex;
-    gap: 10px;
-    margin-top: 10px;
-    flex-wrap: wrap;
-}
-
-.age-suggestion {
-    padding: 5px 10px;
-    background: #f1f8ff;
-    border: 1px solid #c8e1ff;
-    border-radius: 15px;
-    font-size: 0.85rem;
-    color: #0366d6;
-    cursor: pointer;
-    transition: all 0.3s;
-}
-
-.age-suggestion:hover {
-    background: #0366d6;
-    color: white;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .form-grid {
-        grid-template-columns: 1fr !important;
-    }
-    
-    .age-suggestions {
-        justify-content: center;
-    }
-}
 /* ============================ */
 /*        MAIN CONTENT         */
 /* ============================ */
@@ -275,7 +207,7 @@ body {
     font-size: 1rem;
 }
 
-/* Form Layout with 2 Columns */
+/* Form Layout */
 .form-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -283,42 +215,63 @@ body {
     margin-bottom: 1.5rem;
 }
 
-/* Full width fields */
 .full-width {
     grid-column: span 2;
 }
 
-/* إصلاح مشكلة تنسيق عين الباسوورد */
+/* Form Fields */
 .form-group {
     position: relative;
     margin-bottom: 1.8rem;
 }
 
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #2c3e50;
+    font-size: 0.95rem;
+}
+
 .form-group i:not(.toggle-password) {
     position: absolute;
     left: 15px;
-    top: 50%;
+    top: 55%;
     transform: translateY(-50%);
-    color: var(--gray);
+    color: #7f8c8d;
     z-index: 2;
 }
 
 .form-group input {
     width: 100%;
-    padding: 14px 45px 14px 45px;
+    padding: 14px 15px 14px 45px;
     border: 2px solid #e1e5e9;
     border-radius: 12px;
     font-size: 1rem;
     transition: all 0.3s;
     background: white;
+    color: #333;
 }
 
+/* للحقول مع الأيقونات */
+.form-group.with-icon input {
+    padding-left: 45px;
+}
+
+/* عند التركيز فقط */
+.form-group input:focus {
+    outline: none;
+    border-color: #d4a017 !important;
+    box-shadow: 0 0 0 3px rgba(212, 160, 23, 0.2);
+}
+
+/* Password toggle buttons */
 .toggle-password {
     position: absolute;
     right: 15px;
-    top: 50%;
+    top: 55%;
     transform: translateY(-50%);
-    color: var(--gray);
+    color: #7f8c8d;
     cursor: pointer;
     z-index: 10;
     background: none;
@@ -333,15 +286,13 @@ body {
 }
 
 .toggle-password:hover {
-    color: var(--secondary);
+    color: #d4a017;
 }
 
-/* جعل الباسوورد فيلد له padding مناسب للعين */
-#password {
+/* Password fields padding */
+#password,
+#confirmPassword {
     padding-right: 45px !important;
-}
-.toggle-password:hover {
-    color: #2a5298;
 }
 
 /* Checkboxes */
@@ -367,6 +318,8 @@ body {
     margin-top: 3px;
     cursor: pointer;
     flex-shrink: 0;
+    width: 18px;
+    height: 18px;
 }
 
 .terms-checkbox a {
@@ -425,6 +378,12 @@ body {
 
 .login-link a:hover {
     text-decoration: underline;
+}
+
+/* Placeholder لون رمادي */
+.form-group input::placeholder {
+    color: #aaa;
+    opacity: 1;
 }
 
 /* ============================ */
@@ -512,11 +471,13 @@ body {
         flex-wrap: wrap;
         justify-content: center;
         gap: 10px;
+        margin-left: 0;
     }
     
     .main-nav a {
         padding: 8px 12px;
         font-size: 14px;
+        margin-right: 5px;
     }
     
     .signup-form-section {
@@ -529,6 +490,15 @@ body {
     
     .signup-image h2 {
         font-size: 1.8rem;
+    }
+    
+    .form-group input {
+        padding: 12px 15px 12px 45px;
+    }
+    
+    .toggle-password {
+        right: 12px;
+        top: 52%;
     }
 }
 
@@ -561,12 +531,15 @@ body {
     
     .form-group.with-icon i {
         left: 12px;
-        top: 38px;
     }
     
     .toggle-password {
         right: 12px;
-        top: 38px;
+    }
+    
+    .logo-text {
+        font-size: 22px;
+        padding: 4px 10px;
     }
 }
 

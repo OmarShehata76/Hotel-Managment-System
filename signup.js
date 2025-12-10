@@ -5,10 +5,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const passwordField = document.getElementById('password');
     const confirmPasswordField = document.getElementById('confirmPassword');
     const signupForm = document.getElementById('signupForm');
-    const dobInput = document.getElementById('dob');
-    const ageInput = document.getElementById('age');
-    const ageDisplay = document.getElementById('ageDisplay');
-    const ageError = document.getElementById('ageError');
 
     // Password toggle functionality
     if (togglePassword && passwordField) {
@@ -39,50 +35,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Calculate age from Date of Birth
-    if (dobInput) {
-        dobInput.addEventListener('change', function() {
-            const dob = new Date(this.value);
-            if (isValidDate(dob)) {
-                const age = calculateAge(dob);
-                ageInput.value = age;
-                updateAgeDisplay(age);
-                validateAge(age);
-                
-                // Auto-adjust date based on age if age was manually entered first
-                if (ageInput.value && ageInput.value >= 18) {
-                    setDobFromAge(ageInput.value);
-                }
-            }
-        });
-    }
-
-    // Age input validation and auto-update Date of Birth
-    if (ageInput) {
-        ageInput.addEventListener('input', function() {
-            const age = parseInt(this.value);
-            
-            // Show/hide age display
-            if (!isNaN(age) && age > 0) {
-                ageDisplay.textContent = `(${age} years)`;
-                updateAgeDisplay(age);
-                validateAge(age);
-                
-                // Auto-update Date of Birth when age is entered
-                if (age >= 18) {
-                    setDobFromAge(age);
-                }
-            } else {
-                ageDisplay.textContent = '';
-            }
-        });
-
-        ageInput.addEventListener('blur', function() {
-            const age = parseInt(this.value);
-            validateAge(age);
-        });
-    }
-
     // Form submission
     if (signupForm) {
         signupForm.addEventListener('submit', function (e) {
@@ -96,22 +48,11 @@ document.addEventListener('DOMContentLoaded', function () {
             const username = document.getElementById('username').value.trim();
             const password = document.getElementById('password').value;
             const confirmPassword = document.getElementById('confirmPassword').value;
-            const dob = document.getElementById('dob').value;
-            const age = parseInt(ageInput.value);
             const termsAccepted = document.querySelector('.terms-checkbox input').checked;
 
             // Basic validation
-            if (!firstName || !lastName || !email || !phone || !username || !password || !confirmPassword || !dob) {
+            if (!firstName || !lastName || !email || !phone || !username || !password || !confirmPassword) {
                 showAlert('⚠ Please fill in all required fields.', 'error');
-                return;
-            }
-
-            // Age validation
-            if (isNaN(age) || age < 18) {
-                showAlert('⚠ You must be at least 18 years old to register.', 'error');
-                ageError.style.display = 'block';
-                ageInput.style.borderColor = '#e74c3c';
-                ageInput.focus();
                 return;
             }
 
@@ -145,16 +86,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 return;
             }
 
-            // Verify age matches date of birth
-            const birthDate = new Date(dob);
-            if (isValidDate(birthDate)) {
-                const calculatedAge = calculateAge(birthDate);
-                if (Math.abs(calculatedAge - age) > 1) {
-                    showAlert('⚠ Age does not match the date of birth. Please verify your information.', 'warning');
-                    return;
-                }
-            }
-
             // Check if username/email already exists
             const users = JSON.parse(localStorage.getItem('hotelUsers')) || [];
             const userExists = users.find(user => user.username === username || user.email === email);
@@ -164,7 +95,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 return;
             }
 
-            // Create user object
+            // Create user object (no age or dob fields)
             const newUser = {
                 id: Date.now(),
                 firstName: firstName,
@@ -174,8 +105,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 phone: phone,
                 username: username,
                 password: password,
-                dob: dob,
-                age: age,
                 createdAt: new Date().toISOString(),
                 bookings: [],
                 isSubscribed: document.querySelector('.newsletter-checkbox input').checked,
@@ -216,101 +145,23 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // Set date limits for Date of Birth
-    if (dobInput) {
-        const today = new Date();
-        const minDate = new Date(today.getFullYear() - 120, today.getMonth(), today.getDate());
-        const maxDate = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate());
-        
-        dobInput.min = minDate.toISOString().split('T')[0];
-        dobInput.max = maxDate.toISOString().split('T')[0];
-        
-        // Set default to 25 years ago
-        const defaultDate = new Date(today.getFullYear() - 25, today.getMonth(), today.getDate());
-        dobInput.value = defaultDate.toISOString().split('T')[0];
-        
-        // Calculate initial age
-        const initialAge = calculateAge(defaultDate);
-        ageInput.value = initialAge;
-        updateAgeDisplay(initialAge);
-    }
-
-    // Helper Functions
-    function calculateAge(birthDate) {
-        const today = new Date();
-        let age = today.getFullYear() - birthDate.getFullYear();
-        const monthDiff = today.getMonth() - birthDate.getMonth();
-        
-        if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
-            age--;
-        }
-        
-        return age;
-    }
-
-    function isValidDate(date) {
-        return date instanceof Date && !isNaN(date);
-    }
-
-    function validateAge(age) {
-        if (isNaN(age)) {
-            ageError.style.display = 'none';
-            ageInput.style.borderColor = '#e1e5e9';
-            return false;
-        }
-        
-        if (age < 18) {
-            ageError.style.display = 'block';
-            ageInput.style.borderColor = '#e74c3c';
-            return false;
-        } else {
-            ageError.style.display = 'none';
-            ageInput.style.borderColor = '#4CAF50';
-            return true;
-        }
-    }
-
-    function updateAgeDisplay(age) {
-        if (isNaN(age)) {
-            ageDisplay.textContent = '';
-            return;
-        }
-        
-        ageDisplay.textContent = `(${age} years)`;
-        
-        if (age < 18) {
-            ageDisplay.style.color = '#e74c3c';
-        } else if (age < 30) {
-            ageDisplay.style.color = '#2ecc71';
-        } else if (age < 50) {
-            ageDisplay.style.color = '#3498db';
-        } else {
-            ageDisplay.style.color = '#9b59b6';
-        }
-    }
-
-    function setDobFromAge(age) {
-        const today = new Date();
-        const birthYear = today.getFullYear() - age;
-        const dobDate = new Date(birthYear, today.getMonth(), today.getDate());
-        
-        if (dobInput) {
-            dobInput.value = dobDate.toISOString().split('T')[0];
-        }
-    }
-
     function showAlert(message, type = 'info') {
+        // Remove existing alert
+        const existingAlert = document.querySelector('.custom-alert');
+        if (existingAlert) {
+            existingAlert.remove();
+        }
+
         const alertDiv = document.createElement('div');
+        alertDiv.className = `custom-alert alert-${type}`;
         alertDiv.style.cssText = `
             position: fixed;
-            top: 20px;
+            top: 100px;
             right: 20px;
             padding: 15px 25px;
-            background: ${type === 'error' ? '#f44336' : type === 'warning' ? '#ff9800' : '#4CAF50'};
-            color: white;
             border-radius: 8px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            z-index: 1000;
+            z-index: 10000;
             font-weight: 600;
             animation: slideIn 0.3s ease;
             display: flex;
@@ -370,7 +221,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin-bottom: 25px; text-align: left;">
                     <p><i class="fas fa-user"></i> <strong>Username:</strong> ${user.username}</p>
                     <p><i class="fas fa-envelope"></i> <strong>Email:</strong> ${user.email}</p>
-                    <p><i class="fas fa-birthday-cake"></i> <strong>Age:</strong> ${user.age} years</p>
+                    <p><i class="fas fa-phone"></i> <strong>Phone:</strong> ${user.phone}</p>
                     <p><i class="fas fa-calendar"></i> <strong>Account Created:</strong> ${new Date().toLocaleDateString()}</p>
                 </div>
                 
@@ -423,12 +274,21 @@ document.addEventListener('DOMContentLoaded', function () {
             to { transform: scale(1); opacity: 1; }
         }
         
-        input:invalid {
-            border-color: #e74c3c !important;
+        .custom-alert {
+            background: #f44336;
+            color: white;
         }
         
-        input:valid {
-            border-color: #2ecc71 !important;
+        .alert-success {
+            background: #4CAF50;
+        }
+        
+        .alert-error {
+            background: #f44336;
+        }
+        
+        .alert-warning {
+            background: #ff9800;
         }
     `;
     document.head.appendChild(style);
